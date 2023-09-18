@@ -1,12 +1,13 @@
-package org.acme.treino;
+package br.com.treinos.model;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
-import jakarta.json.bind.annotation.JsonbCreator;
+//import io.quarkus.mongodb.panache.common.MongoEntity;
 
+
+//@MongoEntity
 public class Treino extends PanacheMongoEntity {
     //ATRIBUTOS
-//    private
-    String data;
+    private String data;
     private String tempoGasto;
     private double distanciaPercorrida;
     private double velocidadeMaxima;

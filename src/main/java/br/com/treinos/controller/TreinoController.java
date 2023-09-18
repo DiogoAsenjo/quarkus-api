@@ -1,10 +1,10 @@
-package org.acme.controller;
+package br.com.treinos.controller;
 
+import br.com.treinos.model.Treino;
+import br.com.treinos.repository.TreinosRepository;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
-import org.acme.treino.Treino;
-import org.acme.treino.TreinosRepository;
 import org.bson.types.ObjectId;
 
 import java.net.URI;

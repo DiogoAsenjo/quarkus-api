@@ -1,5 +1,6 @@
-package org.acme.treino;
+package br.com.treinos.repository;
 
+import br.com.treinos.model.Treino;
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
