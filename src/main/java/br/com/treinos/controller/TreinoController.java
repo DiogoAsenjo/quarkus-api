@@ -6,9 +6,9 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import org.bson.types.ObjectId;
-
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @Path("/treinos")
 public class TreinoController {
@@ -19,35 +19,33 @@ public class TreinoController {
     @GET
     @Path("/{id}")
     public Response get(@PathParam("id") String id) {
-        Treino treino = repository.findById(new ObjectId(id));
+        Treino treino = repository.mostrarTreino(id);
         return Response.ok(treino).build();
     }
 
     @GET
     public Response get() {
-        return Response.ok(repository.listAll()).build();
+        List<Treino> todosOsTreinos = repository.mostrarTodosOsTreinos();
+        return Response.ok(todosOsTreinos).build();
     }
 
     @POST
     public Response create(Treino treino) throws URISyntaxException {
-        repository.persist(treino);
+        repository.adicionarTreino(treino);
         return Response.created(new URI("/" + treino.id)).build();
     }
 
     @PUT
     @Path("/{id}")
     public Response update(@PathParam("id") String id, Treino treino) {
-        treino.id = new ObjectId(id);
-        repository.update(treino);
+        repository.atualizarTreino(id, treino);
         return Response.ok(treino).build();
     }
 
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
-        Treino treino = repository.findById(new ObjectId(id));
-        repository.delete(treino);
+        repository.excluirTreino(id);
         return Response.noContent().build();
     }
-
 }
