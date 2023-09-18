@@ -1,8 +1,8 @@
-package org.acme.treinos;
+package org.acme.treino;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
-public class Treinos extends PanacheMongoEntity {
+public class Treino extends PanacheMongoEntity {
     //ATRIBUTOS
     String data;
     String tempoGasto;
@@ -11,7 +11,7 @@ public class Treinos extends PanacheMongoEntity {
     double velocidadeMedia;
 
     //CONSTRUTOR
-    public Treinos(String data, String tempoGasto, double distanciaPercorrida, double velocidadeMaxima, double velocidadeMedia) {
+    public Treino(String data, String tempoGasto, double distanciaPercorrida, double velocidadeMaxima, double velocidadeMedia) {
         this.data = data;
         this.tempoGasto = tempoGasto;
         this.distanciaPercorrida = distanciaPercorrida;

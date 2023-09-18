@@ -1,4 +1,4 @@
-package org.acme.treinos;
+package org.acme.treino;
 
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import io.quarkus.panache.common.Sort;
@@ -7,13 +7,13 @@ import jakarta.enterprise.context.ApplicationScoped;
 import java.util.List;
 
 @ApplicationScoped
-public class TreinosRepository implements PanacheMongoRepository<Treinos> {
+public class TreinosRepository implements PanacheMongoRepository<Treino> {
 
-    public Treinos acharPelaData(String data) {
+    public Treino acharPelaData(String data) {
         return find("data", data).firstResult();
     }
 
-    public List<Treinos> ordenarPelaData() {
+    public List<Treino> ordenarPelaData() {
         return listAll(Sort.by("data"));
     }
 }
