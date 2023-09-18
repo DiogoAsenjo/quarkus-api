@@ -2,6 +2,7 @@ package br.com.treinos.model;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 //import io.quarkus.mongodb.panache.common.MongoEntity;
 
 
@@ -10,9 +11,13 @@ public class Treino extends PanacheMongoEntity {
     //ATRIBUTOS
     @NotBlank(message = "Data deve conter algum valor")
     private String data;
+    @NotBlank(message = "Tempo gasto deve conter algum valor")
     private String tempoGasto;
+    @Positive(message = "A distância deve ser maior que 0")
     private double distanciaPercorrida;
+    @Positive(message = "A velocidade máxima deve ser maior que 0")
     private double velocidadeMaxima;
+    @Positive(message = "A velocidade média deve ser maior que 0")
     private double velocidadeMedia;
 
     //CONSTRUTOR
