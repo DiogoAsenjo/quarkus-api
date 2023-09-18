@@ -20,7 +20,7 @@ public class TreinosRepository implements PanacheMongoRepository<Treino> {
     }
 
     public void adicionarTreino(Treino treino) {
-        this.persist(treino);
+            this.persist(treino);
     }
 
     public void atualizarTreino(String id, Treino treino) {

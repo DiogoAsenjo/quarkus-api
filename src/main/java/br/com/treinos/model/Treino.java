@@ -1,12 +1,14 @@
 package br.com.treinos.model;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import jakarta.validation.constraints.NotBlank;
 //import io.quarkus.mongodb.panache.common.MongoEntity;
 
 
 //@MongoEntity
 public class Treino extends PanacheMongoEntity {
     //ATRIBUTOS
+    @NotBlank(message = "Data deve conter algum valor")
     private String data;
     private String tempoGasto;
     private double distanciaPercorrida;
