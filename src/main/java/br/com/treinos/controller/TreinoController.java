@@ -19,7 +19,7 @@ public class TreinoController {
     @GET
     @Path("/{id}")
     public Response get(@PathParam("id") String id) {
-        Treino treino = repository.mostrarTreino(id);
+       Treino treino = repository.mostrarTreino(id);
        return Response.ok(treino).build();
     }
 
