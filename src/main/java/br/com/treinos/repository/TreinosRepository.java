@@ -32,11 +32,7 @@ public class TreinosRepository implements PanacheMongoRepository<Treino> {
         Treino treino = this.findById(new ObjectId(id));
         this.delete(treino);
     }
-    public Treino acharPelaData(String data) {
-        return find("data", data).firstResult();
-    }
-
-    public List<Treino> ordenarPelaData() {
-        return listAll(Sort.by("data"));
+    public List<Treino> ordenar(String campo) {
+        return listAll(Sort.descending(campo));
     }
 }

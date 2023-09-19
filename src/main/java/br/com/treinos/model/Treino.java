@@ -3,10 +3,9 @@ package br.com.treinos.model;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-//import io.quarkus.mongodb.panache.common.MongoEntity;
+import io.quarkus.mongodb.panache.common.MongoEntity;
 
-
-//@MongoEntity
+@MongoEntity(collection = "treinos")
 public class Treino extends PanacheMongoEntity {
     //ATRIBUTOS
     @NotBlank(message = "Data deve conter algum valor")
@@ -34,7 +33,6 @@ public class Treino extends PanacheMongoEntity {
     }
 
     //GETTERS E SETTERS
-
     public String getData() {
         return data;
     }

@@ -3,9 +3,9 @@ package br.com.treinos.controller;
 import br.com.treinos.model.Treino;
 import br.com.treinos.repository.TreinosRepository;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
-import org.bson.types.ObjectId;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -20,7 +20,7 @@ public class TreinoController {
     @Path("/{id}")
     public Response get(@PathParam("id") String id) {
         Treino treino = repository.mostrarTreino(id);
-        return Response.ok(treino).build();
+       return Response.ok(treino).build();
     }
 
     @GET
@@ -29,15 +29,22 @@ public class TreinoController {
         return Response.ok(todosOsTreinos).build();
     }
 
+    @GET
+    @Path("/order/{campo}")
+    public Response search(@PathParam("campo") String campo) {
+        List<Treino> treinosOrdenados = repository.ordenar(campo);
+        return Response.ok(treinosOrdenados).build();
+    }
+
     @POST
-    public Response create(Treino treino) throws URISyntaxException {
+    public Response create(@Valid Treino treino) throws URISyntaxException {
         repository.adicionarTreino(treino);
         return Response.created(new URI("/" + treino.id)).build();
     }
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam("id") String id, Treino treino) {
+    public Response update(@PathParam("id") String id, @Valid Treino treino) {
         repository.atualizarTreino(id, treino);
         return Response.ok(treino).build();
     }
