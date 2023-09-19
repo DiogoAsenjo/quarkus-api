@@ -19,14 +19,12 @@ public class TreinoController {
     @GET
     @Path("/{id}")
     public Response get(@PathParam("id") String id) {
-       Treino treino = repository.mostrarTreino(id);
-       return Response.ok(treino).build();
+       return repository.mostrarTreino(id);
     }
 
     @GET
     public Response get() {
-        List<Treino> todosOsTreinos = repository.mostrarTodosOsTreinos();
-        return Response.ok(todosOsTreinos).build();
+        return repository.mostrarTodosOsTreinos();
     }
 
     @GET
@@ -38,8 +36,7 @@ public class TreinoController {
 
     @POST
     public Response create(@Valid Treino treino) throws URISyntaxException {
-        repository.adicionarTreino(treino);
-        return Response.created(new URI("/" + treino.id)).build();
+        return repository.adicionarTreino(treino);
     }
 
     @PUT
