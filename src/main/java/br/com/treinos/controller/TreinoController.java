@@ -30,8 +30,7 @@ public class TreinoController {
     @GET
     @Path("/order/{campo}")
     public Response search(@PathParam("campo") String campo) {
-        List<Treino> treinosOrdenados = repository.ordenar(campo);
-        return Response.ok(treinosOrdenados).build();
+        return repository.ordenar(campo);
     }
 
     @POST
@@ -42,14 +41,12 @@ public class TreinoController {
     @PUT
     @Path("/{id}")
     public Response update(@PathParam("id") String id, @Valid Treino treino) {
-        repository.atualizarTreino(id, treino);
-        return Response.ok(treino).build();
+        return repository.atualizarTreino(id, treino);
     }
 
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
-        repository.excluirTreino(id);
-        return Response.noContent().build();
+        return repository.excluirTreino(id);
     }
 }

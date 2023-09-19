@@ -16,11 +16,6 @@ public class TreinosRepository implements PanacheMongoRepository<Treino> {
     public Response mostrarTreino(String id) {
         try {
             Treino treino = this.findById(new ObjectId(id));
-            if (treino == null) {
-                return Response
-                        .noContent()
-                        .build();
-            }
             return Response
                     .ok(treino)
                     .build();
@@ -64,19 +59,75 @@ public class TreinosRepository implements PanacheMongoRepository<Treino> {
                     .entity("Erro interno do servidor")
                     .build();
         }
-
     }
 
-    public void atualizarTreino(String id, Treino treino) {
-        treino.id = new ObjectId(id);
-        this.update(treino);
+    public Response atualizarTreino(String id, Treino treino) {
+        try {
+            treino.id = new ObjectId(id);
+            this.update(treino);
+            return Response
+                    .ok(treino)
+                    .entity("Treino modificado!")
+                    .build();
+        } catch (IllegalArgumentException e) {
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .entity("ID inválido")
+                    .build();
+        } catch (Exception e) {
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Erro interno do servidor")
+                    .build();
+        }
     }
 
-    public void excluirTreino(String id) {
-        Treino treino = this.findById(new ObjectId(id));
-        this.delete(treino);
+    public Response excluirTreino(String id) {
+        try {
+            Treino treino = this.findById(new ObjectId(id));
+            if (treino == null) {
+                return Response
+                        .status(Response.Status.NOT_FOUND)
+                        .entity("Treino não existe")
+                        .build();
+            }
+            this.delete(treino);
+            return Response
+                    .noContent()
+                    .build();
+        } catch (IllegalArgumentException e) {
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .entity("ID inválido")
+                    .build();
+        } catch (Exception e) {
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Erro interno do servidor")
+                    .build();
+        }
     }
-    public List<Treino> ordenar(String campo) {
-        return listAll(Sort.descending(campo));
+
+    public Response ordenar(String campo) {
+        try {
+            if (!campo.equals("distanciaPercorrida") &&
+                !campo.equals("velocidadeMaxima") &&
+                !campo.equals("velocidadeMedia"))
+            {
+                return Response
+                        .status(Response.Status.NOT_FOUND)
+                        .entity("Campo inválido, digite 'velocidadeMedia', 'velocidadeMaxima' ou 'distanciaPercorrida'")
+                        .build();
+            }
+            List<Treino> treinosOrdenados = this.listAll(Sort.descending(campo));
+            return Response
+                    .ok(treinosOrdenados)
+                    .build();
+        }  catch (Exception e) {
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Erro interno do servidor")
+                    .build();
+        }
     }
 }
