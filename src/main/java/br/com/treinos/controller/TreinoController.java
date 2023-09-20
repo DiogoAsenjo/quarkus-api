@@ -38,6 +38,13 @@ public class TreinoController {
         return repository.ordenar(campo);
     }
 
+    @GET
+    @Path("/filtrar/{username}")
+    @Operation(summary = "Filtra os treinos por usuário")
+    public Response filter(@PathParam("username") String username) {
+        return repository.mostrarTreinoUsuario(username);
+    }
+
     @POST
     @Operation(summary = "Cria um novo treino")
     public Response create(@Valid Treino treino) throws URISyntaxException {

@@ -38,6 +38,33 @@ public class TreinosRepository implements PanacheMongoRepository<Treino> {
         }
     }
 
+    public Response mostrarTreinoUsuario(String username) {
+        try {
+            Atleta usernameExiste = atletasrepository.verificaSeContaJaExisteUsername(username);
+            if (usernameExiste == null) {
+                return Response
+                        .status(Response.Status.NOT_FOUND)
+                        .entity("Username inválido!")
+                        .build();
+            }
+            List<Treino> treinosUsuario = list("username", username);
+            if (treinosUsuario == null || treinosUsuario.isEmpty()) {
+                return Response
+                        .status(Response.Status.NOT_FOUND)
+                        .entity("Nenhum treino desse usuário")
+                        .build();
+            }
+                return Response
+                    .ok(treinosUsuario)
+                    .build();
+        } catch (Exception e) {
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Erro interno do servidor")
+                    .build();
+        }
+    }
+
     public Response mostrarTodosOsTreinos() {
         try {
             List<Treino> todosOsTreinos = this.listAll();
@@ -58,7 +85,7 @@ public class TreinosRepository implements PanacheMongoRepository<Treino> {
             if (usernameExiste == null) {
                 return Response
                         .status(Response.Status.NOT_FOUND)
-                        .entity("Para criar um treino você deve digitar seu username!")
+                        .entity("Username inválido!")
                         .build();
             }
             this.persist(treino);
@@ -76,7 +103,21 @@ public class TreinosRepository implements PanacheMongoRepository<Treino> {
 
     public Response atualizarTreino(String id, Treino treino) {
         try {
+            Atleta usernameExiste = atletasrepository.verificaSeContaJaExisteUsername(treino.getUsername());
+            if (usernameExiste == null) {
+                return Response
+                        .status(Response.Status.NOT_FOUND)
+                        .entity("Username inválido!")
+                        .build();
+            }
             treino.id = new ObjectId(id);
+            Treino treinoExiste = this.findById(treino.id);
+            if (treinoExiste == null) {
+                return Response
+                        .status(Response.Status.NOT_FOUND)
+                        .entity("Treino não existe!")
+                        .build();
+            }
             this.update(treino);
             return Response
                     .ok(treino)
