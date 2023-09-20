@@ -1,3 +1,43 @@
+# API REST/CRUD de treinos de canoa havaia.
+
+## Objetivo
+Fiz esse projeto como um Desafio proposto pela ModalGR para aprimorar meus conhecimentos em Java e Quarkus, para uma possível oportunidade de trabalho. Vale ressaltar que apesar da vontade nunca antes tinha visto a linguagem e tive apenas 03 dias para fazer essa API.
+
+## Tecnologias, Ferramentas e Linguagems utilizadas
+- Java
+- Quarkus
+- MongoDB
+- Swagger
+- IntelliJ
+
+## Funcionamento do projeto
+Eu gosto muito de remar. Acontece que onde remo nós temos um problema que apesar de marcarmos os dados dos treinos através de relógio com GPS, nós nunca conseguimos de fato manter um acompanhamento do desempenho, se melhoramos, pioramos, etc. 
+
+Por isso, criei essa API que funciona como um CRUD, onde é possível realizar todas as ações da sigla com os treinos, além de conseguir ordenar os melhores treinos de acordo com a distância, velocidade máxima e velocidade média. Também é possível filtrar apenas os treinos de determinado usuário para facilitar o acompanhamento dos treinos pelo mesmo.
+
+Apesar de simples, fiz um simples diagrama que demonstra como deveria funcionar o projeot que me guiou durante o desenvolvimento:
+<div align="center">
+  <img src="/Diagrama.PNG" alt="Diagrama aplicação">
+</div>
+
+## Documentação
+Também consegui fazer a documentação com todas as rotas do projeto usando o Swagger, no momento o projeto está apenas rodando localmente, então caso clone o projeto basta acessar o endereço: http://localhost:8080/api/
+
+Porém segue uma imagem com todas as rotas da aplicação, para mais detalhes será necessário acessar o link citado acima.
+<div align="center">
+  <img src="/Rotas.png" alt="Diagrama aplicação">
+</div>
+
+## Pontos de melhoria
+Apesar do pouco tempo, fiquei bem satisteito com o resultado do meu projeto e não consigo me imaginar fazendo melhor em tão pouco tempo, mas segue alguns pontos que gostaria de melhroar em futuros projetos pessoais ou na minha atuação profissional:
+- Swagger ficou incompleto na questão dos schemas para utilização completa da ferramenta;
+- Conseguir usar os DTOs de melhor forma no projeto;
+- Melhorar o tratamento de erros;
+- Melhorar o status e as respostas da API;
+- Melhorar meus conhecimentos em Java como um todo;
+
+# README Original que já vem com os projetos em Quarkus
+
 # code-with-quarkus
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
