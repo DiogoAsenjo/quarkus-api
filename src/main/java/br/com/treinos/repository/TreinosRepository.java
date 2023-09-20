@@ -22,6 +22,12 @@ public class TreinosRepository implements PanacheMongoRepository<Treino> {
     public Response mostrarTreino(String id) {
         try {
             Treino treino = this.findById(new ObjectId(id));
+            if (treino == null) {
+                return Response
+                        .status(Response.Status.NOT_FOUND)
+                        .entity("Treino não existe!")
+                        .build();
+            }
             return Response
                     .ok(treino)
                     .build();
