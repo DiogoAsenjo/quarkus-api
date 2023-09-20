@@ -7,6 +7,7 @@ Fiz esse projeto como um Desafio proposto pela ModalGR para aprimorar meus conhe
 - Java
 - Quarkus
 - MongoDB
+- Jakarta Bean Validation
 - Swagger
 - IntelliJ
 
