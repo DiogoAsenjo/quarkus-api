@@ -1,9 +1,12 @@
 package br.com.treinos.repository;
 
+import br.com.atletas.model.Atleta;
+import br.com.atletas.repository.AtletasRepository;
 import br.com.treinos.model.Treino;
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 import org.bson.types.ObjectId;
 
@@ -12,6 +15,9 @@ import java.util.List;
 
 @ApplicationScoped
 public class TreinosRepository implements PanacheMongoRepository<Treino> {
+
+    @Inject
+    AtletasRepository atletasrepository;
 
     public Response mostrarTreino(String id) {
         try {
@@ -48,6 +54,13 @@ public class TreinosRepository implements PanacheMongoRepository<Treino> {
 
     public Response adicionarTreino(Treino treino) {
         try {
+            Atleta usernameExiste = atletasrepository.verificaSeContaJaExisteUsername(treino.getUsername());
+            if (usernameExiste == null) {
+                return Response
+                        .status(Response.Status.NOT_FOUND)
+                        .entity("Para criar um treino você deve digitar seu username!")
+                        .build();
+            }
             this.persist(treino);
             return Response
                     .created(new URI("/" + treino.id))

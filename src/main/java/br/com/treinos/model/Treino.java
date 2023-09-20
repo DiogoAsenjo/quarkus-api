@@ -1,5 +1,6 @@
 package br.com.treinos.model;
 
+import br.com.atletas.model.Atleta;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -8,6 +9,8 @@ import io.quarkus.mongodb.panache.common.MongoEntity;
 @MongoEntity(collection = "treinos")
 public class Treino extends PanacheMongoEntity {
     //ATRIBUTOS
+    @NotBlank(message = "Username deve conter um username válido")
+    private String username;
     @NotBlank(message = "Data deve conter algum valor")
     private String data;
     @NotBlank(message = "Tempo gasto deve conter algum valor")
@@ -24,7 +27,8 @@ public class Treino extends PanacheMongoEntity {
 
     }
 
-    public Treino(String data, String tempoGasto, double distanciaPercorrida, double velocidadeMaxima, double velocidadeMedia) {
+    public Treino(String username, String data, String tempoGasto, double distanciaPercorrida, double velocidadeMaxima, double velocidadeMedia) {
+        this.username = username;
         this.data = data;
         this.tempoGasto = tempoGasto;
         this.distanciaPercorrida = distanciaPercorrida;
@@ -33,6 +37,15 @@ public class Treino extends PanacheMongoEntity {
     }
 
     //GETTERS E SETTERS
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getData() {
         return data;
     }

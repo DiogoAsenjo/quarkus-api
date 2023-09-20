@@ -9,13 +9,17 @@ import java.net.URI;
 
 @ApplicationScoped
 public class AtletasRepository implements PanacheMongoRepository<Atleta> {
-    public Atleta verificaSeContaJaExiste(String email) {
+    public Atleta verificaSeContaJaExisteEmail(String email) {
         return this.find("email", email).firstResult();
+    }
+
+    public Atleta verificaSeContaJaExisteUsername(String username) {
+        return this.find("username", username).firstResult();
     }
 
     public Response criarConta(Atleta novoAtleta) {
         try {
-            Atleta contaExiste = this.verificaSeContaJaExiste(novoAtleta.getEmail());
+            Atleta contaExiste = this.verificaSeContaJaExisteEmail(novoAtleta.getEmail());
             if (contaExiste != null) {
                 return Response
                         .status(Response.Status.CONFLICT)
@@ -37,7 +41,7 @@ public class AtletasRepository implements PanacheMongoRepository<Atleta> {
 
     public Response fazerLogin(String email, String senha) {
         try {
-            Atleta contaExiste = this.verificaSeContaJaExiste(email);
+            Atleta contaExiste = this.verificaSeContaJaExisteEmail(email);
             if (contaExiste == null) {
                 return Response
                         .status(Response.Status.BAD_REQUEST)
