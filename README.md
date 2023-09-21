@@ -1,4 +1,4 @@
-# API REST/CRUD de treinos de canoa havaia.
+# API REST/CRUD de treinos de canoa havaina.
 
 ## Objetivo
 Fiz esse projeto como um Desafio proposto pela ModalGR para aprimorar meus conhecimentos em Java e Quarkus, para uma possível oportunidade de trabalho. Vale ressaltar que apesar da vontade nunca antes tinha visto a linguagem e tive apenas 03 dias para fazer essa API.
