@@ -6,6 +6,7 @@ Fiz esse projeto como um Desafio proposto pela ModalGR para aprimorar meus conhe
 ## Tecnologias, Ferramentas e Linguagems utilizadas
 - Java
 - Quarkus
+- Docker
 - MongoDB
 - Jakarta Bean Validation
 - Swagger
